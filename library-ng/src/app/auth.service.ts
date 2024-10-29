@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Auth, GoogleAuthProvider, signInWithPopup } from '@angular/fire/auth';
+import { Auth, GoogleAuthProvider, signInWithPopup, signOut } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,10 @@ export class AuthService {
     this.provider.addScope('https://www.googleapis.com/auth/userinfo.email');
   }
 
+  signedIn() {
+    return !!this.auth.currentUser;
+  }
+
   signIn() {
     signInWithPopup(this.auth, this.provider)
       .then(result => {
@@ -21,6 +25,17 @@ export class AuthService {
       .catch(err => {
         console.log(`Error during sign in: ${err.message}`);
         window.alert(`Sign in failed. Retry or check your browser logs.`);
+      });
+  }
+
+  signOut() {
+    signOut(this.auth)
+      .then(result => {
+        console.log('Signed out.');
+      })
+      .catch(err => {
+        console.log(`Error during sign out: ${err.message}`);
+        window.alert(`Sign out failed. Retry or check your browser logs.`);
       });
   }
 }
