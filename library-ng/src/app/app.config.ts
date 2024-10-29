@@ -13,14 +13,8 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideFirebaseApp(() => initializeApp(
         {
-          "projectId":"run-web",
-          "appId":"1:869102415447:web:2773f423e767419dfbbd12",
-          "storageBucket":"run-web.appspot.com",
-          "locationId":"us-east4",
-          "apiKey":"AIzaSyAA21NTAgAct2HZJj-Kd-OROGZXlkSqVd4",
+          "apiKey":"AIzaSyAMfrocCYIR9411DpaEYbvHI3mEweM1JwE",
           "authDomain":"run-web.firebaseapp.com",
-          "messagingSenderId":"869102415447",
-          "measurementId":"G-H3YTWYL0DY"
         })),
     provideAuth(() => getAuth()),
   ]
