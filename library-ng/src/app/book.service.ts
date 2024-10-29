@@ -1,39 +1,34 @@
 import { Injectable } from '@angular/core';
+import { AuthService } from './auth.service';
 import { Book } from './book';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
-  baseUrl = '';
-  bookList: Book[] = [
-    {
-      id: '1',
-      isbn: '9780802163011',
-      owner_id: 1,
-      title: 'Prophet Song',
-      author: 'Paul Lynch',
-      category: 'Fiction',
-      year: '2023',
-      thumbnail: 'https://m.media-amazon.com/images/I/71p4LJIxG5L._AC_UF1000,1000_QL80_.jpg',
-      is_out: false,
-    },
-    {
-      id: '2',
-      isbn: '9781335430991',
-      owner_id: 1,
-      title: 'Before the coffee gets cold',
-      author: 'Toshikazu Kawaguchi',
-      category: 'Fiction',
-      year: '2019',
-      thumbnail: 'https://mrbookfish.com/wp-content/uploads/2023/11/Before-the-Coffee-Gets-Cold_Toshikazu-Kawaguchi_Front-Cover.webp',
-      is_out: false,
+  baseUrl = 'https://library-server-869102415447.us-central1.run.app';
+
+  constructor(private auth: AuthService) { }
+
+  async listBooks() {
+    const token = await this.auth.token();
+    if (!token) {
+      console.log('no token');
+      return [];
     }
-  ];
 
-  constructor() { }
+    try {
+      const response = await fetch(`${this.baseUrl}/v0/books`, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.json();
+    } catch (err) {
+      console.log(`Error when fetching books: ${err}`);
+      window.alert('Something went wrong');
+    }
 
-  listBooks() {
-    return this.bookList;
   }
 }

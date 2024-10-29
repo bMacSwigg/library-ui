@@ -16,7 +16,7 @@ export class MyLibraryComponent {
   bookService: BookService = inject(BookService);
 
   constructor() {
-    this.bookList = this.bookService.listBooks();
+    this.bookService.listBooks().then(books => this.bookList = books);
   }
 
   filterResults(text: string) {
