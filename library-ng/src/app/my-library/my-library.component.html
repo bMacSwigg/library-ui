@@ -6,7 +6,10 @@
     #filter
   />
 </section>
-  <section class="results">
-      <p>my-library works!</p>
+<section class="results">
+  <app-library-book
+    *ngFor="let book of bookList"
+    [book]="book"
+  ></app-library-book>
 </section>
 
