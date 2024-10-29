@@ -6,11 +6,11 @@
     <mat-icon>account_circle</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="authService.signIn()" *ngIf="!authService.signedIn()">
+    <button mat-menu-item (click)="authService.signIn()" *ngIf="!authService.authenticated()">
       <mat-icon>person</mat-icon>
       <span>Log In</span>
     </button>
-    <button mat-menu-item (click)="authService.signOut()" *ngIf="authService.signedIn()">
+    <button mat-menu-item (click)="authService.signOut()" *ngIf="authService.authenticated()">
       <mat-icon>person</mat-icon>
       <span>Log Out</span>
     </button>

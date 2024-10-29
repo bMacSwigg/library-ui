@@ -12,7 +12,7 @@ export class AuthService {
     this.provider.addScope('https://www.googleapis.com/auth/userinfo.email');
   }
 
-  signedIn() {
+  authenticated() {
     return !!this.auth.currentUser;
   }
 
