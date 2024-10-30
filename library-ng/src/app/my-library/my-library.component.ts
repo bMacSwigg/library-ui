@@ -13,13 +13,25 @@ import { BookService } from '../book.service';
 })
 export class MyLibraryComponent {
   bookList: Book[] = [];
+  filteredList: Book[] = [];
   bookService: BookService = inject(BookService);
 
   constructor() {
-    this.bookService.listBooks().then(books => this.bookList = books);
+    this.bookService.listBooks().then(books => {
+      this.bookList = books;
+      this.filteredList = books;
+    });
   }
 
   filterResults(text: string) {
-    console.log(text);
+    if (!text) {
+      this.filteredList = this.bookList;
+      return;
+    }
+
+    this.filteredList = this.bookList.filter((book) =>
+      book?.title.toLowerCase().includes(text.toLowerCase()) ||
+      book?.author.toLowerCase().includes(text.toLowerCase())
+    );
   }
 }
