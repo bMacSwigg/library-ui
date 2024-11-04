@@ -1,13 +1,15 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
 import { LibraryBookComponent } from '../library-book/library-book.component';
+import { ImportDialogComponent } from '../import-dialog/import-dialog.component';
 import { Book } from '../book';
 import { BookService } from '../book.service';
 
 @Component({
   selector: 'app-my-library',
   standalone: true,
-  imports: [CommonModule, LibraryBookComponent],
+  imports: [CommonModule, LibraryBookComponent, ImportDialogComponent],
   templateUrl: './my-library.component.html',
   styleUrl: './my-library.component.css'
 })
@@ -16,7 +18,7 @@ export class MyLibraryComponent {
   filteredList: Book[] = [];
   bookService: BookService = inject(BookService);
 
-  constructor() {
+  constructor(private dialog: MatDialog) {
     this.bookService.listBooks().then(books => {
       this.bookList = books;
       this.filteredList = books;
@@ -34,4 +36,12 @@ export class MyLibraryComponent {
       book?.author.toLowerCase().includes(text.toLowerCase())
     );
   }
+
+  openImportDialog() {
+    const dialogRef = this.dialog.open(ImportDialogComponent, {
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    }); }
 }
