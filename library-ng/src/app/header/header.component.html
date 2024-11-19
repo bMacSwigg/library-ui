@@ -13,11 +13,15 @@
       </button>
     </div>
     <div *ngIf="authService.authenticated()">
-      <button mat-menu-item>
+      <button mat-menu-item [routerLink]="['/account']">
         <mat-icon>person</mat-icon>
         <span>My Account</span>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item [routerLink]="['/my-library']">
+        <mat-icon>local_library</mat-icon>
+        <span>My Library</span>
+      </button>
+      <button mat-menu-item [routerLink]="['/users']">
         <mat-icon>group</mat-icon>
         <span>Friends</span>
       </button>
