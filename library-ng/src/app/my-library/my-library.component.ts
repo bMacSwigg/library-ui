@@ -16,16 +16,24 @@ import { BookService } from '../book.service';
 export class MyLibraryComponent {
   bookList: Book[] = [];
   filteredList: Book[] = [];
+  filterText: string = '';
   bookService: BookService = inject(BookService);
 
   constructor(private dialog: MatDialog) {
+    this.refreshBooks();
+  }
+
+  refreshBooks() {
     this.bookService.listBooks().then(books => {
       this.bookList = books;
       this.filteredList = books;
+      this.filterResults(this.filterText);
     });
   }
 
   filterResults(text: string) {
+    this.filterText = text;
+
     if (!text) {
       this.filteredList = this.bookList;
       return;
@@ -43,5 +51,7 @@ export class MyLibraryComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-    }); }
+      this.refreshBooks();
+    });
+  }
 }

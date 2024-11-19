@@ -29,6 +29,28 @@ export class BookService {
       console.log(`Error when fetching books: ${err}`);
       window.alert('Something went wrong');
     }
+  }
 
+  async createBook(book: Partial<Book>) {
+    const token = await this.auth.token();
+    if (!token) {
+      console.log('no token');
+      return;
+    }
+
+    try {
+      const response = await fetch(`${this.baseUrl}/v0/books`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({book: book}),
+      });
+      return;
+    } catch (err) {
+      console.log(`Error when creating book: ${err}`);
+      window.alert('Something went wrong');
+    }
   }
 }

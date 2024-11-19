@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { Book } from '../book';
+import { BookService } from '../book.service';
 
 @Component({
   selector: 'app-import-dialog',
@@ -19,6 +21,7 @@ export class ImportDialogComponent {
   category: string = 'Fiction';
   year: string = '';
   url: string = '';
+  bookService: BookService = inject(BookService);
 
   constructor(
     private dialogRef: MatDialogRef<ImportDialogComponent>) {}
@@ -29,6 +32,15 @@ export class ImportDialogComponent {
 
   import() {
     console.log(this.isbn);
+    const book: Partial<Book> = {
+      isbn: this.isbn,
+      title: this.title,
+      author: this.author,
+      category: this.category,
+      year: this.year,
+      thumbnail: this.url,
+    };
+    this.bookService.createBook(book);
     this.dialogRef.close();
   }
 }
