@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { LibraryBookComponent } from '../library-book/library-book.component';
 import { ImportDialogComponent } from '../import-dialog/import-dialog.component';
-import { Book } from '../book';
+import { Book } from '../interfaces/book';
 import { BookService } from '../book.service';
 
 @Component({

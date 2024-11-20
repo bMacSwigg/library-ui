@@ -4,7 +4,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { Book } from '../book';
+import { Book } from '../interfaces/book';
 import { BookService } from '../book.service';
 
 @Component({

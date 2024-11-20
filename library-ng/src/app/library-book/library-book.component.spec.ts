@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LibraryBookComponent } from './library-book.component';
-import { Book } from '../book';
+import { Book } from '../interfaces/book';
 
 const book: Book = {
   id: '1234',
