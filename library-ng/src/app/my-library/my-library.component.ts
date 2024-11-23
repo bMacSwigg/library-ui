@@ -9,7 +9,7 @@ import { BookService } from '../book.service';
 @Component({
   selector: 'app-my-library',
   standalone: true,
-  imports: [CommonModule, LibraryBookComponent, ImportDialogComponent],
+  imports: [CommonModule, LibraryBookComponent],
   templateUrl: './my-library.component.html',
   styleUrl: './my-library.component.css'
 })

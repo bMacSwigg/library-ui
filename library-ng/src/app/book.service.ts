@@ -77,4 +77,29 @@ export class BookService {
       return;
     }
   }
+
+  async listUsers(): Promise<User[]> {
+    const token = await this.auth.token();
+    if (!token) {
+      console.log('no token');
+      return [];
+    }
+
+    try {
+      const response = await fetch(`${this.baseUrl}/v0/users`, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (response.ok) {
+        return response.json();
+      } else {
+        console.log(`Non-ok response when fetching users: ${response.status}`);
+      }
+    } catch (err) {
+      console.log(`Error when fetching users: ${err}`);
+    }
+    return [];
+  }
 }
