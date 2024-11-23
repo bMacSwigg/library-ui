@@ -1,0 +1,16 @@
+<section>
+  <input
+    type="text"
+    placeholder="Filter by title or author"
+    (input)="filterResults(filter.value)"
+    #filter
+  />
+  <button class="primary" (click)="openImportDialog()">Import Book</button>
+</section>
+<section class="results">
+  <app-library-book
+    *ngFor="let book of filteredList"
+    [book]="book"
+  ></app-library-book>
+</section>
+

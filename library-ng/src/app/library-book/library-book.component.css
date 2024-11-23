@@ -1,0 +1,18 @@
+.book {
+  background: var(--accent-color);
+  border-radius: 30px;
+  padding-bottom: 30px;
+}
+.book-heading {
+  color: var(--primary-color);
+  padding: 10px 20px 0 20px;
+}
+.book-photo {
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 30px 30px 0 0;
+}
+.book-details {
+  padding: 10px 20px 20px 20px;
+}

@@ -128,3 +128,9 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# temporary example dir to work off of
+example/*
+
+# WebStorm configs
+.idea/*

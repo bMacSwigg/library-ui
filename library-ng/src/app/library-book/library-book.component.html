@@ -1,0 +1,10 @@
+<section class="book">
+  <img
+    class="book-photo"
+    [src]="book.thumbnail"
+    alt="Cover art of {{ book.title }}"
+    crossorigin
+  />
+  <h2 class="book-heading">{{ book.title }} by {{ book.author }}</h2>
+  <p class="book-details">{{ book.category }}, {{ book.year }}</p>
+</section>
