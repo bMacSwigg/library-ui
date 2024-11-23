@@ -131,3 +131,6 @@ dist
 
 # temporary example dir to work off of
 example/*
+
+# WebStorm configs
+.idea/*
