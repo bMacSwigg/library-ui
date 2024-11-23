@@ -20,7 +20,7 @@ export class AuthService {
   signIn() {
     signInWithPopup(this.auth, this.provider)
       .then(result => {
-        // Returns the signed in user along with the provider's credential
+        // Returns the signed-in user along with the provider's credential
         console.log(`${result.user.displayName} logged in.`);
       })
       .catch(err => {
@@ -47,5 +47,25 @@ export class AuthService {
     } else {
       return getIdToken(user);
     }
+  }
+
+  async validateUser() {
+    if (this.auth.currentUser) {
+      try {
+        const token = await this.token();
+        const response = await fetch('https://library-server-869102415447.us-central1.run.app/v0/check', {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        if (response.ok) {
+          return parseInt(await response.text());
+        }
+      } catch (err) {
+        console.log(`Error when validating user: ${err}`);
+      }
+    }
+    return NaN;
   }
 }

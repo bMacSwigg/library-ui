@@ -6,7 +6,8 @@ export const authGuard: CanActivateFn = (route, state) => {
   const auth = inject(AuthService);
   const router = inject(Router);
 
-  if (auth.authenticated()) {
+  // If we have a saved user_id, assume there is a valid user signed in and the auth just hasn't fired yet
+  if (auth.authenticated() || sessionStorage.getItem('user_id')) {
     return true;
   } else {
     router.navigate(['']);
