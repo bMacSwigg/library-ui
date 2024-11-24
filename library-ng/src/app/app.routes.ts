@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { LandingComponent } from './landing/landing.component';
 import { AccountDetailsComponent } from './account-details/account-details.component';
-import { MyLibraryComponent } from './my-library/my-library.component';
+import { UserLibraryComponent } from './user-library/user-library.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { authGuard } from './auth.guard';
 
@@ -13,8 +13,14 @@ export const routes: Routes = [
   },
   {
     path: 'my-library',
-    component: MyLibraryComponent,
+    component: UserLibraryComponent,
     title: 'My library',
+    canActivate: [authGuard],
+  },
+  {
+    path: 'library/:userId',
+    component: UserLibraryComponent,
+    title: 'Library',
     canActivate: [authGuard],
   },
   {
