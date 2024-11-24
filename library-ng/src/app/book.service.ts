@@ -11,7 +11,7 @@ export class BookService {
 
   constructor(private auth: AuthService) { }
 
-  async listBooks(): Promise<Book[]> {
+  async listBooks(userId?: number): Promise<Book[]> {
     const token = await this.auth.token();
     if (!token) {
       console.log('no token');
@@ -19,7 +19,11 @@ export class BookService {
     }
 
     try {
-      const response = await fetch(`${this.baseUrl}/v0/books`, {
+      let url = `${this.baseUrl}/v0/books`;
+      if (userId) {
+        url += `?user_id=${userId}`;
+      }
+      const response = await fetch(url, {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${token}`,

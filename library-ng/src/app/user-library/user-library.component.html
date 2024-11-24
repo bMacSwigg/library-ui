@@ -5,7 +5,7 @@
     (input)="filterResults(filter.value)"
     #filter
   />
-  <button class="primary" (click)="openImportDialog()">Import Book</button>
+  <button class="primary" (click)="openImportDialog()" *ngIf="isMyLibrary">Import Book</button>
 </section>
 <section class="results">
   <app-library-book

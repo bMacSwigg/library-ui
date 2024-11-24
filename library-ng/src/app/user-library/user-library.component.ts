@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import {Component, inject, Input, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { LibraryBookComponent } from '../library-book/library-book.component';
@@ -7,24 +7,35 @@ import { Book } from '../interfaces/book';
 import { BookService } from '../book.service';
 
 @Component({
-  selector: 'app-my-library',
+  selector: 'app-user-library',
   standalone: true,
   imports: [CommonModule, LibraryBookComponent],
-  templateUrl: './my-library.component.html',
-  styleUrl: './my-library.component.css'
+  templateUrl: './user-library.component.html',
+  styleUrl: './user-library.component.css'
 })
-export class MyLibraryComponent {
+export class UserLibraryComponent implements OnInit {
+  @Input() userId?: number;
+  isMyLibrary: boolean = false;
   bookList: Book[] = [];
   filteredList: Book[] = [];
   filterText: string = '';
   bookService: BookService = inject(BookService);
 
-  constructor(private dialog: MatDialog) {
+  constructor(private dialog: MatDialog) { }
+
+  ngOnInit() {
+    if (!this.userId) {
+      // auth guard ensures this will not be null
+      this.userId = parseInt(sessionStorage.getItem('user_id')!);
+      this.isMyLibrary = true;
+    } else {
+      this.isMyLibrary = (this.userId == parseInt(sessionStorage.getItem('user_id')!));
+    }
     this.refreshBooks();
   }
 
   refreshBooks() {
-    this.bookService.listBooks().then(books => {
+    this.bookService.listBooks(this.userId).then(books => {
       this.bookList = books;
       this.filteredList = books;
       this.filterResults(this.filterText);
