@@ -17,16 +17,25 @@ export class AuthService {
     return !!this.auth.currentUser;
   }
 
-  signIn() {
-    signInWithPopup(this.auth, this.provider)
-      .then(result => {
-        // Returns the signed-in user along with the provider's credential
-        console.log(`${result.user.displayName} logged in.`);
-      })
-      .catch(err => {
-        console.log(`Error during sign in: ${err.message}`);
-        window.alert(`Sign in failed. Retry or check your browser logs.`);
-      });
+  async signIn() {
+    try {
+      await signInWithPopup(this.auth, this.provider);
+    } catch (err: any) {
+      console.log(`Error during sign in: ${err.message}`);
+      window.alert(`Sign in failed. Retry or check your browser logs.`);
+      return false;
+    }
+
+    const user_id = await this.validateUser();
+    if (isNaN(user_id)) {
+      // Not a valid user for the app; so sign back out
+      window.alert('Not a valid user');
+      this.signOut();
+      return false;
+    } else {
+      sessionStorage.setItem('user_id', String(user_id));
+      return true;
+    }
   }
 
   signOut() {
