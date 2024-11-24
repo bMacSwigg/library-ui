@@ -18,18 +18,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     onAuthStateChanged(this.auth, (user) => {
-      if (user) {
-        // User is signed in
-        this.authService.validateUser().then(user_id => {
-          if (isNaN(user_id)) {
-            // Not a valid user for the app; so sign out
-            window.alert('Not a valid user');
-            this.authService.signOut();
-          } else {
-            sessionStorage.setItem('user_id', String(user_id));
-          }
-        });
-      } else {
+      if (!user) {
         // User is signed out
         sessionStorage.removeItem('user_id');
         this.router.navigate(['']);

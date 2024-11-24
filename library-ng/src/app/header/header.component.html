@@ -7,7 +7,7 @@
   </button>
   <mat-menu #menu="matMenu">
     <div *ngIf="!authService.authenticated()">
-      <button mat-menu-item (click)="authService.signIn()">
+      <button mat-menu-item (click)="signIn()">
         <mat-icon>login</mat-icon>
         <span>Log In</span>
       </button>
