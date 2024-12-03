@@ -1,30 +1,43 @@
-<h1 mat-dialog-title>Import</h1>
+<h1 mat-dialog-title>Add a new book to your library</h1>
 <div mat-dialog-content>
-  <p>Add a new book to your library</p>
-  <mat-form-field>
-    <mat-label>ISBN</mat-label>
-    <input matInput [(ngModel)]="isbn">
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Title</mat-label>
-    <input matInput [(ngModel)]="title">
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Author</mat-label>
-    <input matInput [(ngModel)]="author">
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Category</mat-label>
-    <input matInput [(ngModel)]="category">
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Year</mat-label>
-    <input matInput [(ngModel)]="year">
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Thumbnail URL</mat-label>
-    <input matInput [(ngModel)]="url">
-  </mat-form-field>
+  <div id="lookup">
+    <p>Lookup by ISBN</p>
+    <mat-form-field>
+      <mat-label>ISBN</mat-label>
+      <input matInput [(ngModel)]="isbn">
+    </mat-form-field>
+    <button class="primary" (click)="lookup()">Lookup</button>
+  </div>
+  <mat-divider></mat-divider>
+  <div id="details">
+    <p>Set fields manually</p>
+    <div class="flex-container">
+      <mat-form-field>
+        <mat-label>ISBN</mat-label>
+        <input matInput [(ngModel)]="isbn">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input matInput [(ngModel)]="title">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Author</mat-label>
+        <input matInput [(ngModel)]="author">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Category</mat-label>
+        <input matInput [(ngModel)]="category">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Year</mat-label>
+        <input matInput [(ngModel)]="year">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Thumbnail URL</mat-label>
+        <input matInput [(ngModel)]="url">
+      </mat-form-field>
+    </div>
+  </div>
 </div>
 <div mat-dialog-actions>
   <button class="secondary" (click)="cancel()">Cancel</button>

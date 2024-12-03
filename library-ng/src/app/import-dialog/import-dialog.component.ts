@@ -6,11 +6,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { Book } from '../interfaces/book';
 import { BookService } from '../book.service';
+import {MatDivider} from '@angular/material/divider';
+import {LookupService} from '../lookup.service';
 
 @Component({
   selector: 'app-import-dialog',
   standalone: true,
-  imports: [FormsModule, MatInputModule, MatFormFieldModule, MatDialogModule],
+  imports: [FormsModule, MatInputModule, MatFormFieldModule, MatDialogModule, MatDivider],
   templateUrl: './import-dialog.component.html',
   styleUrl: './import-dialog.component.css'
 })
@@ -22,9 +24,21 @@ export class ImportDialogComponent {
   year: string = '';
   url: string = '';
   bookService: BookService = inject(BookService);
+  lookupService: LookupService = inject(LookupService);
 
   constructor(
     private dialogRef: MatDialogRef<ImportDialogComponent>) {}
+
+  async lookup() {
+    const book = await this.lookupService.lookupBook(this.isbn);
+    if (book) {
+      this.title = book.title;
+      this.author = book.author;
+      this.category = book.category;
+      this.year = book.year;
+      this.url = book.thumbnail;
+    }
+  }
 
   cancel() {
     this.dialogRef.close();
