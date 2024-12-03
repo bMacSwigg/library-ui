@@ -2,10 +2,17 @@
   background: var(--accent-color);
   border-radius: 30px;
   padding-bottom: 30px;
+  height: calc(100% - 30px);
 }
 .book-heading {
   color: var(--primary-color);
   padding: 10px 20px 0 20px;
+  margin: 0;
+}
+.book-author {
+  color: var(--primary-color);
+  padding: 0 20px 0 20px;
+  margin: 0;
 }
 .book-photo {
   height: 250px;
