@@ -6,13 +6,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { Book } from '../interfaces/book';
 import { BookService } from '../book.service';
-import {MatDivider} from '@angular/material/divider';
+import {MatDividerModule} from '@angular/material/divider';
 import {LookupService} from '../lookup.service';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-import-dialog',
   standalone: true,
-  imports: [FormsModule, MatInputModule, MatFormFieldModule, MatDialogModule, MatDivider],
+  imports: [FormsModule, MatInputModule, MatFormFieldModule, MatDialogModule, MatDividerModule, MatButtonModule],
   templateUrl: './import-dialog.component.html',
   styleUrl: './import-dialog.component.css'
 })

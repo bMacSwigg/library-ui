@@ -6,7 +6,7 @@
       <mat-label>ISBN</mat-label>
       <input matInput [(ngModel)]="isbn">
     </mat-form-field>
-    <button class="primary" (click)="lookup()">Lookup</button>
+    <button mat-button style="margin-left: 10px" (click)="lookup()">Lookup</button>
   </div>
   <mat-divider></mat-divider>
   <div id="details">
@@ -40,6 +40,6 @@
   </div>
 </div>
 <div mat-dialog-actions>
-  <button class="secondary" (click)="cancel()">Cancel</button>
-  <button class="primary" (click)="import()" cdkFocusInitial>Import</button>
+  <button mat-stroked-button (click)="cancel()">Cancel</button>
+  <button mat-flat-button (click)="import()" cdkFocusInitial>Import</button>
 </div>
