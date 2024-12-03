@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { Auth, onAuthStateChanged } from '@angular/fire/auth';
 import { HeaderComponent } from './header/header.component';
-import {AuthService} from './auth.service';
+import {StorageService} from './storage.service';
 
 @Component({
   selector: 'app-root',
@@ -14,13 +14,13 @@ import {AuthService} from './auth.service';
 export class AppComponent implements OnInit {
   title = 'library-ng';
 
-  constructor(private auth: Auth, private authService: AuthService, private router: Router) { }
+  constructor(private auth: Auth, private storageService: StorageService, private router: Router) { }
 
   ngOnInit() {
     onAuthStateChanged(this.auth, (user) => {
       if (!user) {
         // User is signed out
-        sessionStorage.removeItem('user_id');
+        this.storageService.clearData();
         this.router.navigate(['']);
       }
     });
