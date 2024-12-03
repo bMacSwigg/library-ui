@@ -5,11 +5,13 @@ import { LibraryBookComponent } from '../library-book/library-book.component';
 import { ImportDialogComponent } from '../import-dialog/import-dialog.component';
 import { Book } from '../interfaces/book';
 import { BookService } from '../book.service';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 @Component({
   selector: 'app-user-library',
   standalone: true,
-  imports: [CommonModule, LibraryBookComponent],
+  imports: [CommonModule, LibraryBookComponent, MatButtonModule, MatIconModule],
   templateUrl: './user-library.component.html',
   styleUrl: './user-library.component.css'
 })
