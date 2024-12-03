@@ -1,6 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { Auth, GoogleAuthProvider } from '@angular/fire/auth';
 import { signInWithPopup, signOut, getIdToken } from '@angular/fire/auth';
+import {User} from './interfaces/user';
+import {StorageService} from './storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +10,7 @@ import { signInWithPopup, signOut, getIdToken } from '@angular/fire/auth';
 export class AuthService {
   private auth = inject(Auth);
   private provider = new GoogleAuthProvider();
+  private storageService: StorageService = inject(StorageService);
 
   constructor() {
     this.provider.addScope('https://www.googleapis.com/auth/userinfo.email');
@@ -26,14 +29,14 @@ export class AuthService {
       return false;
     }
 
-    const user_id = await this.validateUser();
-    if (isNaN(user_id)) {
+    const user = await this.validateUser();
+    if (!user) {
       // Not a valid user for the app; so sign back out
       window.alert('Not a valid user');
       this.signOut();
       return false;
     } else {
-      sessionStorage.setItem('user_id', String(user_id));
+      this.storageService.setLocalUser(user);
       return true;
     }
   }
@@ -58,7 +61,7 @@ export class AuthService {
     }
   }
 
-  async validateUser() {
+  async validateUser() : Promise<User | undefined> {
     if (this.auth.currentUser) {
       try {
         const token = await this.token();
@@ -69,12 +72,12 @@ export class AuthService {
           },
         });
         if (response.ok) {
-          return parseInt(await response.text());
+          return response.json();
         }
       } catch (err) {
         console.log(`Error when validating user: ${err}`);
       }
     }
-    return NaN;
+    return;
   }
 }

@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BookService } from '../book.service';
+import {StorageService} from '../storage.service';
 
 @Component({
   selector: 'app-account-details',
@@ -16,10 +17,11 @@ export class AccountDetailsComponent {
   name: string = '';
   email: string = '';
   bookService: BookService = inject(BookService);
+  storageService: StorageService = inject(StorageService);
 
   constructor() {
     // auth guard ensures this will not be null
-    this.user_id = parseInt(sessionStorage.getItem('user_id')!);
+    this.user_id = this.storageService.getLocalUser()!.user_id;
     this.bookService.getUser(this.user_id).then(user => {
       this.name = user?.name || '';
       this.email = user?.email || '';

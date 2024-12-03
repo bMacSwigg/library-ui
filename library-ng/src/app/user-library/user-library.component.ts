@@ -7,6 +7,7 @@ import { Book } from '../interfaces/book';
 import { BookService } from '../book.service';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {StorageService} from '../storage.service';
 
 @Component({
   selector: 'app-user-library',
@@ -22,16 +23,18 @@ export class UserLibraryComponent implements OnInit {
   filteredList: Book[] = [];
   filterText: string = '';
   bookService: BookService = inject(BookService);
+  storageService: StorageService = inject(StorageService);
 
   constructor(private dialog: MatDialog) { }
 
   ngOnInit() {
+    // auth guard ensures this will not be null
+    const loggedInUser = this.storageService.getLocalUser()!
     if (!this.userId) {
-      // auth guard ensures this will not be null
-      this.userId = parseInt(sessionStorage.getItem('user_id')!);
+      this.userId = loggedInUser.user_id;
       this.isMyLibrary = true;
     } else {
-      this.isMyLibrary = (this.userId == parseInt(sessionStorage.getItem('user_id')!));
+      this.isMyLibrary = (this.userId == loggedInUser.user_id);
     }
     this.refreshBooks();
   }
