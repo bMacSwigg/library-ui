@@ -4,7 +4,7 @@
     <p>Lookup by ISBN</p>
     <mat-form-field>
       <mat-label>ISBN</mat-label>
-      <input matInput [(ngModel)]="isbn">
+      <input matInput [(ngModel)]="isbn" cdkFocusInitial (keydown.enter)="lookup()">
     </mat-form-field>
     <button mat-button style="margin-left: 10px" (click)="lookup()">Lookup</button>
   </div>
@@ -41,5 +41,5 @@
 </div>
 <div mat-dialog-actions>
   <button mat-stroked-button (click)="cancel()">Cancel</button>
-  <button mat-flat-button (click)="import()" cdkFocusInitial>Import</button>
+  <button mat-flat-button (click)="import()">Import</button>
 </div>
