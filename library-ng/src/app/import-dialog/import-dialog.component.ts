@@ -5,9 +5,9 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { Book } from '../interfaces/book';
-import { BookService } from '../book.service';
+import { BookService } from '../services/book.service';
 import {MatDividerModule} from '@angular/material/divider';
-import {LookupService} from '../lookup.service';
+import {LookupService} from '../services/lookup.service';
 import {MatButtonModule} from '@angular/material/button';
 
 @Component({

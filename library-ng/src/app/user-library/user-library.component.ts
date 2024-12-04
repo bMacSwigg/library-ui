@@ -4,10 +4,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { LibraryBookComponent } from '../library-book/library-book.component';
 import { ImportDialogComponent } from '../import-dialog/import-dialog.component';
 import { Book } from '../interfaces/book';
-import { BookService } from '../book.service';
+import { BookService } from '../services/book.service';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-import {StorageService} from '../storage.service';
+import {StorageService} from '../services/storage.service';
 
 @Component({
   selector: 'app-user-library',

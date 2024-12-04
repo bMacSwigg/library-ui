@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Auth, GoogleAuthProvider } from '@angular/fire/auth';
 import { signInWithPopup, signOut, getIdToken } from '@angular/fire/auth';
-import {User} from './interfaces/user';
+import {User} from '../interfaces/user';
 import {StorageService} from './storage.service';
 
 @Injectable({

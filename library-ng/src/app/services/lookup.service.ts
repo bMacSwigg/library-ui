@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Book} from './interfaces/book';
+import {Book} from '../interfaces/book';
 import {AuthService} from './auth.service';
 
 @Injectable({

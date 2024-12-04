@@ -2,8 +2,8 @@ import {Component, inject, Input} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { BookService } from '../book.service';
-import {StorageService} from '../storage.service';
+import { BookService } from '../services/book.service';
+import {StorageService} from '../services/storage.service';
 
 @Component({
   selector: 'app-account-details',

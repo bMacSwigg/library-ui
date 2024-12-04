@@ -1,6 +1,6 @@
 import {Component, inject} from '@angular/core';
 import {User} from '../interfaces/user';
-import {BookService} from '../book.service';
+import {BookService} from '../services/book.service';
 import {MatTableModule} from '@angular/material/table';
 import {MatButtonModule} from '@angular/material/button';
 import {RouterModule} from '@angular/router';

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { Auth, onAuthStateChanged } from '@angular/fire/auth';
 import { HeaderComponent } from './header/header.component';
-import {StorageService} from './storage.service';
+import {StorageService} from './services/storage.service';
 
 @Component({
   selector: 'app-root',
