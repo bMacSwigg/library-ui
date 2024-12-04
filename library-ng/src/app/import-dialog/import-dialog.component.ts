@@ -46,7 +46,9 @@ export class ImportDialogComponent {
   }
 
   import() {
-    console.log(this.isbn);
+    if (!this.isbn || !this.title || !this.author) {
+      return;
+    }
     const book: Partial<Book> = {
       isbn: this.isbn,
       title: this.title,
